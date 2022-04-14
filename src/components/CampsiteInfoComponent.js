@@ -50,15 +50,17 @@ class CampsiteInfo extends Component {
         // can be evaluated as truthy (e.g. is not null, is not undefined)
         if (this.props.campsite){
             return (
-                <div className="row">
-                    {/* call the renderCampsite method and pass the campsite to it.
-                    Remember to use this where appropriate. There will be two places you need to use this for this step. */}
-                    {this.renderCampsite(this.props.campsite)}
-                    {this.renderComments(this.props.campsite.comments)}
+                <div className="container">
+                    <div className="row">
+                        {/* call the renderCampsite method and pass the campsite to it.
+                        Remember to use this where appropriate. There will be two places you need to use this for this step. */}
+                        {this.renderCampsite(this.props.campsite)}
+                        {this.renderComments(this.props.campsite.comments)}
+                    </div>
                 </div>
             );
             }
-        return <div />
+        return <div />;
 
     }
 }
