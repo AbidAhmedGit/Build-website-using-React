@@ -16,11 +16,15 @@ function Footer(props) {
                     </div>
                     <div className="col-6 col-sm-3 text-center">
                         <h5>Social</h5>
+                        {/* you use {' '} to add whitespace in jsx--> different from HTML*/}
+                        {/* the spaces are to space out the social buttons */}
                         <a className="btn btn-social-icon btn-instagram" href="http://instagram.com/"><i className="fa fa-instagram" /></a>{' '}
                         <a className="btn btn-social-icon btn-facebook" href="http://www.facebook.com/"><i className="fa fa-facebook" /></a>{' '}
                         <a className="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i className="fa fa-twitter" /></a>{' '}
                         <a className="btn btn-social-icon btn-google" href="http://youtube.com/"><i className="fa fa-youtube" /></a>
                     </div>
+                    {/* JSX allows any element to be self-closing */}
+                    {/* HTML would not allow <i/>---> <i></i> */}
                     <div className="col-sm-4 text-center">
                         <a role="button" className="btn btn-link" href="tel:+12065551234"><i className="fa fa-phone" /> 1-206-555-1234</a><br />
                         <a role="button" className="btn btn-link" href="mailto:notreal@notreal.co"><i className="fa fa-envelope-o" /> campsites@nucamp.co</a>

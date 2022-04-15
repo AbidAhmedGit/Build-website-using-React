@@ -4,6 +4,8 @@ import { Navbar, NavbarBrand, Jumbotron } from 'reactstrap';
 class Header extends Component {
     render() {
         return (
+            // react.fragment helps prevent creating unnecessary DOM nodes
+            // short version for React.Fragment--> <></>
             <React.Fragment>
                 <Jumbotron fluid>
                     <div className="container">

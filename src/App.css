@@ -2,6 +2,7 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+/* selects only for card-title that is direct children of card-body */
 h1, h2, h3, .card-body>.card-title {
   font-family: "Lobster", cursive;
 }
