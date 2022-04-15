@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
 
 
-class CampsiteInfo extends Component {
+function RenderCampsite({campsite}) {
 
     // Task 2: adding a card component to the CampsiteInfo component view to display more information
-    renderCampsite(campsite) {
+    // renderCampsite(campsite) {
         return (
             <div className="col-md-5 m-1">
                 <Card>
@@ -17,12 +17,15 @@ class CampsiteInfo extends Component {
                 </Card>
             </div>
             )
-    }
+}
+
+
+function RenderComments({comments}) {
 
     // Implement a method inside the CampsiteInfo component named renderComments()
     // that takes the comments array stored in the campsite object as a parameter
     // -- i.e. renderComments(comments).
-    renderComments(comments) {
+    // renderComments(comments) {
         if (comments){
             return(<div className="col-md-5 m-1">
                         <h4>Comments</h4>
@@ -40,29 +43,24 @@ class CampsiteInfo extends Component {
                     </div>)
         }
         return <div />
-    }
+}
 
 
 
 
-    render() {
-        // Inside its render method, check if an object with the name "campsite" (passed in via props)
-        // can be evaluated as truthy (e.g. is not null, is not undefined)
-        if (this.props.campsite){
+
+function CampsiteInfo(props) {
+        if (props.campsite) {
             return (
                 <div className="container">
                     <div className="row">
-                        {/* call the renderCampsite method and pass the campsite to it.
-                        Remember to use this where appropriate. There will be two places you need to use this for this step. */}
-                        {this.renderCampsite(this.props.campsite)}
-                        {this.renderComments(this.props.campsite.comments)}
+                        <RenderCampsite campsite={props.campsite} />
+                        <RenderComments comments={props.campsite.comments} />
                     </div>
                 </div>
             );
-            }
+        }
         return <div />;
-
-    }
 }
 
 export default CampsiteInfo;
