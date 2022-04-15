@@ -1,0 +1,59 @@
+[33mcommit b40d7b4104d3da2b7dea1546481101f1338b9326[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Abid Ahmed <abid.ahmedaccessor3@gmail.com>
+Date:   Fri Apr 15 00:57:56 2022 -0400
+
+    Functional Components
+
+[33mcommit cde72c0689fceb5aca6ad2f642b1fc5e3c85619f[m
+Author: Abid Ahmed <abid.ahmedaccessor3@gmail.com>
+Date:   Thu Apr 14 03:03:08 2022 -0400
+
+    Presentational and Container Components
+
+[33mcommit 9adc9e527abb4bb05148575dfa456c898d287ec8[m
+Author: Abid Ahmed <abid.ahmedaccessor3@gmail.com>
+Date:   Sat Apr 9 13:30:24 2022 -0400
+
+    added necessary comments for easier reference of the code
+
+[33mcommit 2ab996c50f9147aa653b83a9891856ba2d57c6b7[m
+Author: Abid Ahmed <abid.ahmedaccessor3@gmail.com>
+Date:   Sat Apr 9 13:10:09 2022 -0400
+
+    task 3 completed
+
+[33mcommit e99830d9fae845370776f335d915eb7ea57f9510[m
+Author: Abid Ahmed <abid.ahmedaccessor3@gmail.com>
+Date:   Sat Apr 9 11:44:54 2022 -0400
+
+    task 2 completed
+
+[33mcommit 208645c724641fc66d458b7a39dfbdc2d04c8353[m
+Author: Abid Ahmed <abid.ahmedaccessor3@gmail.com>
+Date:   Sat Apr 9 11:06:38 2022 -0400
+
+    Task 1 completed
+
+[33mcommit 09c1ae43a2bb0709b101eee36276962154c7a9d9[m
+Author: Abid Ahmed <abid.ahmedaccessor3@gmail.com>
+Date:   Thu Apr 7 02:34:06 2022 -0400
+
+    Components Part 2
+
+[33mcommit 7d16fb80817dfe276561edc8ee582dacd42441c3[m
+Author: Abid Ahmed <abid.ahmedaccessor3@gmail.com>
+Date:   Wed Apr 6 18:00:10 2022 -0400
+
+    Components Part 1
+
+[33mcommit 87407ad320a7bb6c23762cd6a328fc15be1eece8[m
+Author: Abid Ahmed <abid.ahmedaccessor3@gmail.com>
+Date:   Tue Apr 5 15:39:50 2022 -0400
+
+    Configuring React
+
+[33mcommit 6f2439ea6e948cad3d5a89c3056b63d3a7945e85[m
+Author: Abid Ahmed <abid.ahmedaccessor3@gmail.com>
+Date:   Tue Apr 5 14:24:28 2022 -0400
+
+    Initialize project using Create React App
