@@ -38,6 +38,7 @@ class Main extends Component {
 
         const CampsiteWithId = ({match}) => {
             return (
+                // the + sign makes the data type into number
                 <CampsiteInfo
                     campsite={this.state.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
                     comments={this.state.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
@@ -56,8 +57,9 @@ class Main extends Component {
                     {/* using attribute instead of render because you don't use state data */}
                     <Route exact path='/contactus' component={Contact} />
 
+                    {/* The colon tells the router that what follows the slash is a parameter */}
                     <Route path='/directory/:campsiteId' component={CampsiteWithId} />
-                    
+
                     {/* default statement---> when there are no routing requests*/}
                     <Redirect to='/home' />
                 </Switch>

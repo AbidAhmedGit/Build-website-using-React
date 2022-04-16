@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 function RenderDirectoryItem({campsite}) {
     return (
         <Card>
+            {/* making dynamic links */}
             <Link to={`/directory/${campsite.id}`}>
                 <CardImg width="100%" src={campsite.image} alt={campsite.name} />
                 <CardImgOverlay>
