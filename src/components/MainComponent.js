@@ -25,12 +25,22 @@ class Main extends Component {
 
     render() {
 
+        // Arrow functions inherit the this of their parent scope
         const HomePage = () => {
             return (
                 <Home
                     campsite={this.state.campsites.filter(campsite => campsite.featured)[0]}
                     promotion={this.state.promotions.filter(promotion => promotion.featured)[0]}
                     partner={this.state.partners.filter(partner => partner.featured)[0]}
+                />
+            );
+        };
+
+        const CampsiteWithId = ({match}) => {
+            return (
+                <CampsiteInfo
+                    campsite={this.state.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
+                    comments={this.state.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
                 />
             );
         };
@@ -46,6 +56,8 @@ class Main extends Component {
                     {/* using attribute instead of render because you don't use state data */}
                     <Route exact path='/contactus' component={Contact} />
 
+                    <Route path='/directory/:campsiteId' component={CampsiteWithId} />
+                    
                     {/* default statement---> when there are no routing requests*/}
                     <Redirect to='/home' />
                 </Switch>
