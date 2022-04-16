@@ -11,6 +11,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { COMMENTS } from '../shared/comments';
 import { PARTNERS } from '../shared/partners';
 import { PROMOTIONS } from '../shared/promotions';
+import About from './AboutComponent'
 
 class Main extends Component {
     constructor(props) {
@@ -46,6 +47,7 @@ class Main extends Component {
             );
         };
 
+        
         return (
             <div>
                 <Header />
@@ -53,6 +55,10 @@ class Main extends Component {
                     {/* routes the user to home page */}
                     <Route path='/home' component={HomePage} />
                     <Route exact path='/directory' render={() => <Directory campsites={this.state.campsites} />} />
+
+                    {/* Integrate the AboutComponent into the single page application. */}
+                    <Route exact path='/aboutus' render={() => <About partners={this.state.partners} />} />
+
 
                     {/* using attribute instead of render because you don't use state data */}
                     <Route exact path='/contactus' component={Contact} />
