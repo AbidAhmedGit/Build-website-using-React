@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 // import Button, Form, FormGroup, Label, Input, Col from 'reactstrap';
-import { Breadcrumb, BreadcrumbItem, Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
+// FormFeedback helps us show error messages on form
+import { Breadcrumb, BreadcrumbItem, Button, Form, FormGroup, Label, Input, Col, FormFeedback } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 class Contact extends Component {
@@ -16,7 +17,16 @@ class Contact extends Component {
             email: '',
             agree: false,
             contactType: 'By Phone',
-            feedback: ''
+            feedback: '',
+
+            // keeps track if these fields were touched or not
+            // users entered anything or not
+            touched: {
+                firstName: false,
+                lastName: false,
+                phoneNum: false,
+                email: false
+            }
         };
 
 
@@ -35,6 +45,54 @@ class Contact extends Component {
         });
     }
 
+    validate(firstName, lastName, phoneNum, email) {
+
+        const errors = {
+            firstName: '',
+            lastName: '',
+            phoneNum: '',
+            email: ''
+        };
+
+        if (this.state.touched.firstName) {
+            if (firstName.length < 2) {
+                errors.firstName = 'First name must be at least 2 characters.';
+            } else if (firstName.length > 15) {
+                errors.firstName = 'First name must be 15 or less characters.';
+            }
+        }
+
+        if (this.state.touched.lastName) {
+            if (lastName.length < 2) {
+                errors.lastName = 'Last name must be at least 2 characters.';
+            } else if (lastName.length > 15) {
+                errors.lastName = 'Last name must be 15 or less characters.';
+            }
+        }
+
+        const reg = /^\d+$/;
+        if (this.state.touched.phoneNum && !reg.test(phoneNum)) {
+            errors.phoneNum = 'The phone number should contain only numbers.';
+        }
+
+        if (this.state.touched.email && !email.includes('@')) {
+            errors.email = 'Email should contain a @';
+        }
+
+        return errors;
+    }
+
+    // this method tracks whether a value has been input in the touched fields
+    // because we are passing arguments other than event we need to wrap the
+    // blur method in another function
+    handleBlur = (field) => () => {
+        this.setState({
+
+            // spread syntax
+            touched: {...this.state.touched, [field]: true}
+        });
+    }
+
     // the entire form gets set to this method onSubmit
     handleSubmit(event) {
         console.log('Current state is: ' + JSON.stringify(this.state));
@@ -43,6 +101,9 @@ class Contact extends Component {
     }
 
     render() {
+
+        const errors = this.validate(this.state.firstName, this.state.lastName, this.state.phoneNum, this.state.email);
+
         return (
             <div className="container">
                 <div className="row">
@@ -90,30 +151,65 @@ class Contact extends Component {
                                         placeholder="First Name"
                                         value={this.state.firstName}
 
+                                        invalid={errors.firstName}
+
+                                        // anytime a user enters and moves away from the field
+                                        // it will fire this event handler
+                                        onBlur={this.handleBlur("firstName")}
+
                                         // each input also gets an onChange event handler
                                         // set to the method handleInputChange
                                         onChange={this.handleInputChange} />
+
+                                    {/* this displays the error message beneath the inputs */}
+                                    <FormFeedback>{errors.firstName}</FormFeedback>
+
                                 </Col>
                             </FormGroup>
+
                             <FormGroup row>
 
                                 {/* in html you use for = "sth" but since for is a loop
                                 in JS, you have to use htmlFor  */}
                                 <Label htmlFor="lastName" md={2}>Last Name</Label>
                                 <Col md={10}>
+
                                     <Input type="text" id="lastName" name="lastName"
                                         placeholder="Last Name"
                                         value={this.state.lastName}
+
+                                        invalid={errors.lastName}
+
+                                        // anytime a user enters and moves away from the field
+                                        // it will fire this event handler
+                                        onBlur={this.handleBlur("lastName")}
+
                                         onChange={this.handleInputChange} />
+
+                                    {/* this displays the error message beneath the inputs */}
+                                    <FormFeedback>{errors.lastName}</FormFeedback>
+
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
                                 <Label htmlFor="phoneNum" md={2}>Phone</Label>
                                 <Col md={10}>
+
                                     <Input type="tel" id="phoneNum" name="phoneNum"
                                         placeholder="Phone number"
                                         value={this.state.phoneNum}
+
+                                        invalid={errors.phoneNum}
+
+                                        // anytime a user enters and moves away from the field
+                                        // it will fire this event handler
+                                        onBlur={this.handleBlur("phoneNum")}
+
                                         onChange={this.handleInputChange} />
+
+                                    {/* this displays the error message beneath the inputs */}
+                                    <FormFeedback>{errors.phoneNum}</FormFeedback>
+
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
@@ -128,7 +224,19 @@ class Contact extends Component {
                                         // value of each input to this state-- the
                                         // state property we defined before to hold this input
                                         value={this.state.email}
+
+                                        invalid={errors.email}
+
+                                        // anytime a user enters and moves away from the field
+                                        // it will fire this event handler
+                                        onBlur={this.handleBlur("email")}
+
                                         onChange={this.handleInputChange} />
+
+                                    {/* this displays the error message beneath the inputs */}
+                                    <FormFeedback>{errors.email}</FormFeedback>
+
+
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
