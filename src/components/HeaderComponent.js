@@ -27,6 +27,7 @@ class Header extends Component {
         });
     }
 
+    // function to the class to handle the form submission: 
     handleLogin(event) {
         alert(`Username: ${this.username.value} Password: ${this.password.value} Remember: ${this.remember.checked}`);
         this.toggleModal();
@@ -86,6 +87,7 @@ class Header extends Component {
 
                             </Nav>
 
+                            {/* button to the Navbar to enable toggling the modal:  */}
                             <span className="navbar-text ml-auto">
                                 <Button outline onClick={this.toggleModal}>
                                     <i className="fa fa-sign-in fa-lg" /> Login
@@ -96,9 +98,12 @@ class Header extends Component {
                     </div>
                 </Navbar>
 
+                {/* add a new Modal to the application to host the form:  */}
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
                     <ModalBody>
+
+                        {/* Add the uncontrolled form */}
                         <Form onSubmit={this.handleLogin}>
                                 <FormGroup>
                                     <Label htmlFor="username">Username</Label>
