@@ -2,18 +2,16 @@ import React, { Component } from 'react';
 import { Navbar, NavbarBrand } from 'reactstrap';
 import Directory from './DirectoryComponent';
 import CampsiteInfo from './CampsiteInfoComponent';
-// import { CAMPSITES } from '../shared/campsites';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
 import Contact from './ContactComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { COMMENTS } from '../shared/comments';
-// import { PARTNERS } from '../shared/partners';
-// import { PROMOTIONS } from '../shared/promotions';
+
 import About from './AboutComponent'
 
+// takes state as an argument
 const mapStateToProps = state => {
     return {
         campsites: state.campsites,
@@ -62,4 +60,7 @@ class Main extends Component {
     }
 }
 
+// set up connect methdos: 1st parenthesis contain map state to props and
+// 2nd will contain main
+// add withRouter to make sure react router will still work
 export default withRouter(connect(mapStateToProps)(Main));
