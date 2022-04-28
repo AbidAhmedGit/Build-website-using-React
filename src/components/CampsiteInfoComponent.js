@@ -12,8 +12,8 @@ const minLength = len => val => val && (val.length >= len);
 
 function RenderCampsite({campsite}) {
 
-    // Task 2: adding a card component to the CampsiteInfo component view to display more information
-    // renderCampsite(campsite) {
+        // Task 2: adding a card component to the CampsiteInfo component view to display more information
+        // renderCampsite(campsite) {
         return (
             <div className="col-md-5 m-1">
                 <Card>
@@ -30,7 +30,7 @@ function RenderCampsite({campsite}) {
 }
 
 
-function RenderComments({comments}) {
+function RenderComments({comments, addComment, campsiteId}) {
 
     // Implement a method inside the CampsiteInfo component named renderComments()
     // that takes the comments array stored in the campsite object as a parameter
@@ -51,7 +51,7 @@ function RenderComments({comments}) {
                                     </div>)
                         })}
                     <span>
-                        <CommentForm />
+                        <CommentForm campsiteId={campsiteId} addComment={addComment} />
                     </span>
                 </div>)
     }
@@ -74,7 +74,11 @@ function CampsiteInfo(props) {
                     </div>
                     <div className="row">
                         <RenderCampsite campsite={props.campsite} />
-                        <RenderComments comments={props.comments} />
+                        <RenderComments
+                            comments={props.comments}
+                            addComment={props.addComment}
+                            campsiteId={props.campsite.id}
+                            />
                     </div>
                 </div>
             );
@@ -117,8 +121,8 @@ class CommentForm extends Component{
     }
 
     handleSubmit(values) {
-        console.log("Current state is: " + JSON.stringify(values));
-        alert("Current state is: " + JSON.stringify(values));
+        this.toggleModal();
+        this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text);
     }
 
 

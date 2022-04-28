@@ -8,7 +8,7 @@ import Home from './HomeComponent';
 import Contact from './ContactComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { addComment } from '../redux/ActionCreators';
 import About from './AboutComponent'
 
 // takes state as an argument
@@ -19,6 +19,12 @@ const mapStateToProps = state => {
         partners: state.partners,
         promotions: state.promotions
     };
+};
+
+// you can set this up as a function or an object
+// recommended: set up as object
+const mapDispatchToProps = {
+    addComment: (campsiteId, rating, author, text) => (addComment(campsiteId, rating, author, text))
 };
 
 class Main extends Component {
@@ -38,8 +44,11 @@ class Main extends Component {
 
         const CampsiteWithId = ({match}) => {
             return (
-                <CampsiteInfo campsite={this.props.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
-                  comments={this.props.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)} />
+                <CampsiteInfo
+                    campsite={this.props.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
+                    comments={this.props.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
+                    addComment={this.props.addComment}
+                />
             );
         };
 
@@ -54,6 +63,7 @@ class Main extends Component {
                     <Route exact path='/aboutus' render={() => <About partners={this.props.partners} /> } />
                     <Redirect to='/home' />
                 </Switch>
+
                 <Footer />
             </div>
         );
@@ -63,4 +73,4 @@ class Main extends Component {
 // set up connect methdos: 1st parenthesis contain map state to props and
 // 2nd will contain main
 // add withRouter to make sure react router will still work
-export default withRouter(connect(mapStateToProps)(Main));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
