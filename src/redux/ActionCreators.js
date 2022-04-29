@@ -1,4 +1,7 @@
+// using redux thunk to perform an asynchronous request to a server
+
 import * as ActionTypes from './ActionTypes';
+import { CAMPSITES } from '../shared/campsites';
 
 export const addComment = (campsiteId, rating, author, text) => ({
     type: ActionTypes.ADD_COMMENT,
@@ -8,4 +11,29 @@ export const addComment = (campsiteId, rating, author, text) => ({
         author: author,
         text: text
     }
+});
+
+// redux thunk syntax
+export const fetchCampsites = () => dispatch => {
+
+    dispatch(campsitesLoading());
+
+    // simulates delay: 2000ms/ 2s
+    setTimeout(() => {
+        dispatch(addCampsites(CAMPSITES));
+    }, 2000);
+};
+
+export const campsitesLoading = () => ({
+    type: ActionTypes.CAMPSITES_LOADING
+});
+
+export const campsitesFailed = errMess => ({
+    type: ActionTypes.CAMPSITES_FAILED,
+    payload: errMess
+});
+
+export const addCampsites = campsites => ({
+    type: ActionTypes.ADD_CAMPSITES,
+    payload: campsites
 });
