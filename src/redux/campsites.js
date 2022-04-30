@@ -1,5 +1,5 @@
 // import data from the shared folder
-import { CAMPSITES } from '../shared/campsites';
+// import { CAMPSITES } from '../shared/campsites';
 import * as ActionTypes from './ActionTypes';
 
 // a default state=campsites exists because the first

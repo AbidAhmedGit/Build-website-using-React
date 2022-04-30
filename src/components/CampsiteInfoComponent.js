@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody,
-    Form, FormGroup, Input, Label, Col, Row} from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem, Button, Modal, ModalBody,
+    Label, Col} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
@@ -194,6 +194,7 @@ class CommentForm extends Component{
                             {/* author field */}
                             <div className="form-group" >
                                 <Label>Author</Label>
+                                <Col >
                                 <Control.text model=".author" id="author" name="author"
                                     validators={{
                                         required,
@@ -201,6 +202,7 @@ class CommentForm extends Component{
                                         maxLength: maxLength(15)
                                     }}
                                 />
+                                </Col>
                                 <Errors
                                         className="text-danger"
                                         model=".author"
