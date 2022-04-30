@@ -1,13 +1,17 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../shared/baseUrl';
+import { Loading } from './LoadingComponent';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+
 
 // how to deconstruct props.partner in the parameter list
 function RenderPartner({partner}) {
     if (partner){
         return (
             <React.Fragment>
-                <Media object={true} src={partner.image} alt={partner.name} width="150"/>
+                <Media object={true} src={baseUrl + partner.image} alt={partner.name} width="150"/>
                 <Media body={true} className="ml-5 mb-4">
                     <Media heading={true}>{partner.name}</Media>
                     <p>{partner.description}</p>
@@ -19,9 +23,43 @@ function RenderPartner({partner}) {
 
 }
 
-function About(props) {
+function PartnerList(props){
+    const partners = props.partners.partners.map(partner => {
+        return (
+            <Fade in key={partner.id}>
+                <Media tag="li" >
+                    {/* Alternative approach */}
+                    {/* {RenderPartner(partner)} */}
+                    <RenderPartner partner={partner} />
 
-    const partners = props.partners.map(partner => {
+                </Media>
+            </Fade>
+        );
+    });
+
+    if (props.partners.isLoading) {
+        return <Loading />;
+    }
+
+    if (props.partners.errMess) {
+        return <div className = "col"><h4>{props.partners.errMess}</h4></div>;
+    }
+
+    return (
+            <div className = "col mt-4">
+                <Media list>
+                    <Stagger in>
+                        {partners}
+                    </Stagger>
+                </Media>
+            </div>
+            )
+
+}
+
+function About(props) {
+    // console.log(props)
+    const partners = props.partners.partners.map(partner => {
         return (
             <Media tag="li" key={partner.id}>
                 {/* Alternative approach */}
@@ -84,11 +122,12 @@ function About(props) {
                 <div className="col-12">
                     <h3>Community Partners</h3>
                 </div>
-                <div className="col mt-4">
+                {/* <div className="col mt-4">
                     <Media list>
                         {partners}
                     </Media>
-                </div>
+                </div> */}
+                <PartnerList partners={props.partners}/>
             </div>
         </div>
     );
