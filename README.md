@@ -1,9 +1,3 @@
-Not a production app. Course project in conjunction with Nucamp full stack bootcamp to learn fundamentals of Front-End app making.
-
-Website app for a fictional camping/campsite company => the app used relative paths in the object properties to grab the images from the images folder. 
-
-Image paths no longer worked (though correctly written) after npm run deploy
-
 Built using ReactJS, Redux, React-Router, Bootstrap/Reactstrap
 
 navigation throughout the site:
